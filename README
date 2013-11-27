@@ -13,7 +13,7 @@ Teoria: no sistema dado, exitem duas classes de escalonamento: Completely Fair S
 Completely Fair Schedule Class: os processos que possuem qualquer uma das seguintes políticas: SCHED_NORMAL, SCHED_OTHER, SCHED_BATCH e SCHED_IDLE pertencem a essa classe de escalonamento. Vale notar que para esses processos, a prioridade não é definida de maneira estática, logo, para cada um desses processos, o sistema operacional calcula a prioridade de execução com base em vários parâmentros e, fazendo uso de uma estrutura de dados do tipo árvore vermelha e preta, organiza a ordem de execução dos mesmos.
 A implementação dessa classe encontra-se em /kernel/sched/fair.c
 
-RT schedule Class: os processos que possuem as políticas FIFO ou RR pertencem a essa classe de escalonamento. Tais processos tem prioridade de execução sobre os processos da classe Completly Free Schedule e possuem prioridade definida (rt_priority) que vai de 1 (menor prioridade) até 99 (maior prioridade).
+RT schedule Class: os processos que possuem as políticas FIFO ou RR pertencem a essa classe de escalonamento. Tais processos tem prioridade de execução sobre os processos da classe Completly Fair Schedule e possuem prioridade definida (rt_priority) que vai de 1 (menor prioridade) até 99 (maior prioridade).
 Processos RR: são escalonados com base na política RR (quantum) e executam até que completem sua tarefa, sejam postos para dormir, sofram uma interrupção ou o seu quantum termine. 
 Processos FIFO: são escalonados com base na política FIFO e executam até que completem sua tarefa, sejam postos para dormir ou sofram uma interrupção. Processos desse tipo podem gerar starvation em processos de menor prioridade.
 A implementação dessa classe econtra-se em /kernel/sched/rt.c
