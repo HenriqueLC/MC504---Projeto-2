@@ -8,9 +8,9 @@ A instalação dos arquivos segue o procedimento descrito na página da disclipl
 
 Idéia: a idéia principal dessa syscall é fazer com que um processo ganhe prioridade de execução sobre todos os outros e execute por um tempo indeterminado, ou seja, até que complete sua tarefa, seja posto para dormir ou sofra uma interrupção. Isso é feito escalonando-se o processo na política FIFO e atribuíndo-se a ele a prioridade máxima dentre a de todos os outros processos que pertençam a classe de escalonamento Real Time (FIFO ou RR).
 
-Teoria: no sistema dado, exitem duas classes de escalonamento: Completely Free Schedule Class e RT schedule Class.
+Teoria: no sistema dado, exitem duas classes de escalonamento: Completely Fair Schedule Class e RT schedule Class.
 
-Completely Free Schedule Class: os processos que possuem qualquer uma das seguintes políticas: SCHED_NORMAL, SCHED_OTHER, SCHED_BATCH e SCHED_IDLE pertencem a essa classe de escalonamento. Vale notar que para esses processos, a prioridade não é definida de maneira estática, logo, para cada um desses processos, o sistema operacional calcula a prioridade de execução com base em vários parâmentros e, fazendo uso de uma estrutura de dados do tipo árvore vermelha e preta, organiza a ordem de execução dos mesmos.
+Completely Fair Schedule Class: os processos que possuem qualquer uma das seguintes políticas: SCHED_NORMAL, SCHED_OTHER, SCHED_BATCH e SCHED_IDLE pertencem a essa classe de escalonamento. Vale notar que para esses processos, a prioridade não é definida de maneira estática, logo, para cada um desses processos, o sistema operacional calcula a prioridade de execução com base em vários parâmentros e, fazendo uso de uma estrutura de dados do tipo árvore vermelha e preta, organiza a ordem de execução dos mesmos.
 A implementação dessa classe encontra-se em /kernel/sched/fair.c
 
 RT schedule Class: os processos que possuem as políticas FIFO ou RR pertencem a essa classe de escalonamento. Tais processos tem prioridade de execução sobre os processos da classe Completly Free Schedule e possuem prioridade definida (rt_priority) que vai de 1 (menor prioridade) até 99 (maior prioridade).
